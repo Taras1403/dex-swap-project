@@ -7,7 +7,7 @@ import { ConnectKitProvider, getDefaultConfig } from 'connectkit';
 
 import { ConnectKitButton } from 'connectkit';
 import { useReadContract, useWriteContract, useAccount } from 'wagmi';
-import { DEX_CONTRACT_ADDRESS, DEX_ABI, TOKEN_A_ADDRESS, TOKEN_B_ADDRESS } from '@/constants/dex';
+import { DEX_CONTRACT_ADDRESS, DEX_ABI, TOKEN_A_ADDRESS, TOKEN_B_ADDRESS, TOKEN_A_ABI } from '@/constants/dex';
 
 const config = createConfig({
   chains: [mainnet, hardhat],
@@ -41,7 +41,34 @@ function DEXInterface() {
     // Функції для взаємодії з контрактом
     const { writeContractAsync } = useWriteContract();
 
-    // Виклик функції обміну токенів
+    const handleApprove = async () => {
+        if (!address) {
+            console.error("Please connect your wallet.");
+            return;
+        }
+
+        try {
+            const tx = await writeContractAsync({
+                address: TOKEN_A_ADDRESS,
+                abi: TOKEN_A_ABI, // Не забудьте додати цей ABI!
+                functionName: 'approve',
+                args: [
+                    DEX_CONTRACT_ADDRESS, 
+                    1000000000000000000n // Кількість токенів, яку ви дозволяєте DEX використовувати
+                ],
+            });
+            console.log('Approve transaction hash:', tx);
+            alert(`Approve transaction sent! Hash: ${tx}`);
+        } catch (e) {
+            console.error('Approve failed:', e);
+            if (e instanceof Error) {
+                alert(`Approve failed: ${e.message}`);
+            } else {
+                alert('Approve failed: An unknown error occurred.');
+            }
+        }
+    };
+
     const handleSwap = async () => {
         if (!address) {
             console.error("Please connect your wallet.");
@@ -56,8 +83,8 @@ function DEXInterface() {
                 abi: DEX_ABI,
                 functionName: 'swap',
                 args: [
+                  TOKEN_A_ADDRESS,
                   1000000000000000000n,
-                  TOKEN_B_ADDRESS,
                 ],
             });
             console.log('Transaction hash:', tx);
@@ -84,6 +111,7 @@ function DEXInterface() {
     return (
         <div>
             <h2>DEX Interface</h2>
+            <button onClick={handleApprove}>Approve Token A</button>
             <button onClick={handleSwap}>Swap Token A for B</button>
         </div>
     );
