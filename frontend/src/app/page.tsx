@@ -38,7 +38,7 @@ export default function Home() {
 function DEXInterface() {
     const { address, isConnected } = useAccount();
     
-    // Функції для взаємодії з контрактом
+    // Functions for interacting with the contract
     const { writeContractAsync } = useWriteContract();
 
     const handleApprove = async () => {
@@ -50,11 +50,11 @@ function DEXInterface() {
         try {
             const tx = await writeContractAsync({
                 address: TOKEN_A_ADDRESS,
-                abi: TOKEN_A_ABI, // Не забудьте додати цей ABI!
+                abi: TOKEN_A_ABI,
                 functionName: 'approve',
                 args: [
                     DEX_CONTRACT_ADDRESS, 
-                    1000000000000000000n // Кількість токенів, яку ви дозволяєте DEX використовувати
+                    1000000000000000000n // The number of tokens you allow DEX to use
                 ],
             });
             console.log('Approve transaction hash:', tx);
@@ -76,8 +76,8 @@ function DEXInterface() {
         }
 
         try {
-            // Приклад виклику функції swapAForB.
-            // Примітка: вам потрібно мати достатньо токенів А на балансі гаманця
+            // Example of calling the swapAForB function.
+            // Note: you need to have enough A tokens in your wallet balance.
             const tx = await writeContractAsync({
                 address: DEX_CONTRACT_ADDRESS,
                 abi: DEX_ABI,
