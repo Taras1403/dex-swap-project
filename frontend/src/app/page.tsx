@@ -94,10 +94,12 @@ function DEXInterface() {
     }
 
     return (
-        <div>
+        <div className="flex flex-col gap-y-4">
             <h2>DEX Interface</h2>
-            <button onClick={handleApprove} className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 transition-colors duration-200">Approve Token A</button>
-            <button className="swap-button" onClick={handleSwap}>Swap Token A for B</button>
+            <div className="flex gap-x-4">
+                <button className="swap-button" onClick={handleApprove}>Approve Token A</button>
+                <button className="swap-button" onClick={handleSwap}>Swap Token A for B</button>
+            </div>
         </div>
     );
 }
