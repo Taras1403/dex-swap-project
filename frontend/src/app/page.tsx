@@ -1,37 +1,22 @@
 'use client';
 
-import { WagmiProvider, createConfig, http } from 'wagmi';
-import { mainnet, hardhat } from 'wagmi/chains';
+import { WagmiProvider, useReadContract, useWriteContract, useAccount } from 'wagmi';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ConnectKitProvider, getDefaultConfig } from 'connectkit';
+import { ConnectKitProvider, getDefaultConfig, } from 'connectkit';
+import Image from 'next/image';
+import Head from 'next/head';
+import Header from './components/Header';
 
-import { ConnectKitButton } from 'connectkit';
-import { useReadContract, useWriteContract, useAccount } from 'wagmi';
 import { DEX_CONTRACT_ADDRESS, DEX_ABI, TOKEN_A_ADDRESS, TOKEN_B_ADDRESS, TOKEN_A_ABI } from '@/constants/dex';
-
-const config = createConfig({
-  chains: [mainnet, hardhat],
-  transports: {
-    [mainnet.id]: http(),
-    [hardhat.id]: http(),
-  },
-});
 
 const queryClient = new QueryClient();
 
 export default function Home() {
   return (
-    <WagmiProvider config={config}>
-      <QueryClientProvider client={queryClient}>
-        <ConnectKitProvider>
-          <div>
-            <h1>Hello, Next.js with Wagmi!</h1>
-            <ConnectKitButton />
-            <DEXInterface />
-          </div>
-        </ConnectKitProvider>
-      </QueryClientProvider>
-    </WagmiProvider>
+    <div>
+      <h1>Hello, Next.js with Wagmi!</h1>
+      <DEXInterface />
+    </div>
   );
 }
 
@@ -111,8 +96,8 @@ function DEXInterface() {
     return (
         <div>
             <h2>DEX Interface</h2>
-            <button onClick={handleApprove}>Approve Token A</button>
-            <button onClick={handleSwap}>Swap Token A for B</button>
+            <button onClick={handleApprove} className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 transition-colors duration-200">Approve Token A</button>
+            <button className="swap-button" onClick={handleSwap}>Swap Token A for B</button>
         </div>
     );
 }
