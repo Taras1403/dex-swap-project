@@ -14,8 +14,9 @@ body {
 }
 
 .swap-button {
-  background-color: #3b82f6;
-  color: white;
+  background-color: #e0e5ec;
+  box-shadow: 10px 10px 20px #a3b1c6, -10 -10 20px #ffffff;
+  color: rgb(0, 0, 0);
   font-weight: bold;
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
