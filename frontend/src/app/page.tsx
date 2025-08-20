@@ -14,7 +14,6 @@ const queryClient = new QueryClient();
 export default function Home() {
   return (
     <div>
-      <h1>Hello, Next.js with Wagmi!</h1>
       <DEXInterface />
     </div>
   );
@@ -96,9 +95,9 @@ function DEXInterface() {
     return (
         <div className="flex flex-col gap-y-4">
             <h2>DEX Interface</h2>
-            <div className="flex gap-x-4">
-                <button className="swap-button" onClick={handleApprove}>Approve Token A</button>
-                <button className="swap-button" onClick={handleSwap}>Swap Token A for B</button>
+            <div className="flex gap-x-6">
+                <button className="swap-button dark:bg-[#1a202c] dark:text-white dark:shadow-[10px_10px_20px_#11161d,-10px_-10px_20px_#2b3341] w-40" onClick={handleApprove}>Approve</button>
+                <button className="swap-button dark:bg-[#1a202c] dark:text-white dark:shadow-[10px_10px_20px_#11161d,-10px_-10px_20px_#2b3341] w-40" onClick={handleSwap}>Swap</button>
             </div>
         </div>
     );
