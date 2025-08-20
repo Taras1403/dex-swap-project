@@ -3,14 +3,9 @@
 @tailwind utilities;
 
 body {
-  background-color: #e0e5ec;
+  /*background-color: #e0e5ec;*/
   color: #a0aec0;
   font-family: Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
 }
 
 .swap-button {
