@@ -23,7 +23,9 @@ export default function ThemeSwitcher() {
   };
 
   return (
-    <button onClick={toggleTheme} className="px-4 py-2 rounded-full">
+    <button onClick={toggleTheme} className="py-2 px-4 rounded-full bg-[#e0e5ec] text-black font-bold
+                                    shadow-[4px_4px_8px_#a3b1c6,-4px_-4px_8px_#ffffff]
+                                    dark:bg-[#1a202c] dark:text-white dark:shadow-[4px_4px_8px_#11161d,-4px_-4px_8px_#2b3341]">
       {theme === 'light' ? 'dark' : 'light'}
     </button>
   );
