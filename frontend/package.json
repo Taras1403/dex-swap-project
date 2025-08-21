@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.85.5",
     "@wagmi/core": "^2.19.0",
     "autoprefixer": "^10.4.21",
     "connectkit": "^1.9.1",
@@ -16,8 +17,8 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.5.0",
-    "viem": "^2.33.3",
-    "wagmi": "^2.16.3"
+    "viem": "^2.34.0",
+    "wagmi": "^2.16.4"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
