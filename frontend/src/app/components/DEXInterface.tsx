@@ -6,6 +6,7 @@ import { useAccount, useWriteContract } from 'wagmi';
 import { DEX_CONTRACT_ADDRESS, DEX_ABI, TOKEN_A_ADDRESS, TOKEN_B_ADDRESS, TOKEN_A_ABI } from '@/constants/dex';
 
 import Image from 'next/image';
+import CustomConnectButton from './CustomConnectButton';
 
 export default function DEXInterface() {
     const [activeButton, setActiveButton] = useState('swap');
@@ -78,15 +79,6 @@ export default function DEXInterface() {
             }
         };
 
-    if (!isConnected) {
-        return (
-            <div>
-                <h2>DEX Interface</h2>
-                <p>Please connect your wallet to use the DEX.</p>
-            </div>
-        );
-    }
-
     return (
         <div className="bg-[#e0e5ec] p-6 rounded-3xl shadow-[10px_10px_20px_#a3b1c6,-10px_-10px_20px_#ffffff]
                         dark:bg-[#1a202c] dark:shadow-[10px_10px_20px_#11161d,-10px_-10px_20px_#2b3341]">
@@ -147,16 +139,22 @@ export default function DEXInterface() {
             </div>
 
             <div className="flex justify-between space-x-4">
-                <button className="py-3 px-6 rounded-full flex-1 bg-[#e0e5ec] text-black font-bold
-                                   shadow-[4px_4px_8px_#a3b1c6,-4px_-4px_8px_#ffffff]
-                                   dark:bg-[#1a202c] dark:text-white dark:shadow-[4px_4px_8px_#11161d,-4px_-4px_8px_#2b3341]" onClick={handleApprove}>
-                    Approve
-                </button>
-                <button className="py-3 px-6 rounded-full flex-1 bg-[#e0e5ec] text-black font-bold
-                                   shadow-[4px_4px_8px_#a3b1c6,-4px_-4px_8px_#ffffff]
-                                   dark:bg-[#1a202c] dark:text-white dark:shadow-[4px_4px_8px_#11161d,-4px_-4px_8px_#2b3341]" onClick={handleSwap}>
-                    Swap
-                </button>
+                {isConnected ? (
+                    <>
+                        <button className="py-3 px-6 rounded-full flex-1 bg-[#e0e5ec] text-black font-bold
+                                        shadow-[4px_4px_8px_#a3b1c6,-4px_-4px_8px_#ffffff]
+                                        dark:bg-[#1a202c] dark:text-white dark:shadow-[4px_4px_8px_#11161d,-4px_-4px_8px_#2b3341]" onClick={handleApprove}>
+                            Approve
+                        </button>
+                        <button className="py-3 px-6 rounded-full flex-1 bg-[#e0e5ec] text-black font-bold
+                                        shadow-[4px_4px_8px_#a3b1c6,-4px_-4px_8px_#ffffff]
+                                        dark:bg-[#1a202c] dark:text-white dark:shadow-[4px_4px_8px_#11161d,-4px_-4px_8px_#2b3341]" onClick={handleSwap}>
+                            Swap
+                        </button>
+                    </>
+                ) : (
+                    <CustomConnectButton />
+                )}
             </div>
         </div>
     );
