@@ -64,13 +64,7 @@ export default function NetworkSwitcher() {
               disabled={!switchChain || x.id === chainId || isPending}
             >
               {getChainIcon(x.id) && (
-                <Image
-                  src={getChainIcon(x.id)}
-                  alt={x.name}
-                  width={20}
-                  height={20}
-                  className="rounded-full w-5 h-5"
-                />
+                <Image src={getChainIcon(x.id)} alt={x.name} width={20} height={20} className="rounded-full w-5 h-5" />
               )}
               <span>{x.name}</span>
               {x.id === chainId && <span className="ml-auto text-blue-500">✔</span>}

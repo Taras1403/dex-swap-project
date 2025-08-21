@@ -1,5 +1,3 @@
-// src/app/components/Footer.tsx
-
 import React from 'react';
 import { FaTwitter, FaTelegram, FaDiscord, FaEnvelope } from 'react-icons/fa';
 

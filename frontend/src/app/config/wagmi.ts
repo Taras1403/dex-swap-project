@@ -1,4 +1,5 @@
 // chains.ts > wagmi.ts > provaiders.tsx
+
 import { createConfig, http } from 'wagmi'
 import { SUPPORTED_CHAINS } from './chains'
 

@@ -9,16 +9,13 @@ import Image from 'next/image';
 import CustomConnectButton from './CustomConnectButton';
 
 export default function DEXInterface() {
+    // Change in the status of Swap and Cross-Chain buttons
     const [activeButton, setActiveButton] = useState('swap');
 
-    const handleSwapClick = () => {
-        setActiveButton('swap');
-    };
+    const handleSwapClick = () => {setActiveButton('swap');};
+    const handleCrossChainClick = () => {setActiveButton('cross-chain');};
 
-    const handleCrossChainClick = () => {
-        setActiveButton('cross-chain');
-    };
-
+    // Test translation
     const { address, isConnected } = useAccount();
     const { writeContractAsync } = useWriteContract();
 
